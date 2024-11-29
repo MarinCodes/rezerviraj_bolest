@@ -1,4 +1,30 @@
 /* Modern minimalistic styles for Rezerviraj Bolest */
+/* Confetti Animation */
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background-color: #f0f0f0;
+    pointer-events: none;
+    z-index: 9999;
+    animation: confettiFall 4s linear forwards;
+}
+
+.confetti:nth-child(2n) { background-color: #ff69b4; }
+.confetti:nth-child(3n) { background-color: #7fff00; }
+.confetti:nth-child(4n) { background-color: #00bfff; }
+.confetti:nth-child(5n) { background-color: #ffd700; }
 body {
     font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
     line-height: 1.6;
@@ -76,4 +102,214 @@ h1 {
         background-color: #fff;
         color: #000;
     }
+}
+
+@media print {
+    .print-together {
+      break-inside: avoid;
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
+    }
+  }
+button {
+    background-color: #3c4043;
+    color: #e8eaed;
+    border: 1px solid #5f6368;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #4a4d51;
+}
+
+.bg-toggle {
+    background-color: #3c4043;
+    color: #e8eaed;
+    border: 1px solid #5f6368;
+}
+
+.bg-toggle:hover {
+    background-color: #4a4d51;
+}
+@keyframes confetti {
+    0% {
+        transform: translateY(0) rotateZ(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-1000px) rotateZ(720deg);
+        opacity: 0;
+    }
+}
+
+button::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+}
+
+button:active::after {
+    animation: confetti 1s ease-out forwards;
+}
+
+/* Multiple confetti particles with different colors and delays */
+button:active::before,
+button:active::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+button:active::before {
+    background: #ff7eb9;
+    left: 50%;
+    animation: confetti 1s ease-out 0.1s forwards;
+}
+
+button:active::after {
+    background: #7afcff;
+    left: 45%;
+    animation: confetti 1s ease-out forwards;
+}
+
+button {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Additional confetti elements */
+button:active::after {
+    box-shadow: 
+        2rem 0rem #feff9c,
+        -2rem 0rem #ff7eb9,
+        0 -2rem #7afcff,
+        2rem 2rem #ff65a3,
+        -2rem -2rem #feff9c,
+        2rem -2rem #7afcff,
+        -2rem 2rem #ff7eb9;
+}
+/* Fade-in animation for page load */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply fade-in animation to body and its children */
+body * {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+/* Stagger the animation for different elements */
+.container {
+    animation-delay: 0.2s;
+}
+
+.form-container {
+    animation-delay: 0.4s;
+}
+
+.form-group {
+    animation-delay: 0.6s;
+}
+
+.ispricnica {
+    animation-delay: 0.8s;
+}
+
+/* Ensure elements are initially invisible */
+body *,
+.container,
+.form-container,
+.form-group,
+.ispricnica {
+    opacity: 0;
+}
+/* Smooth background transition */
+body {
+    transition: background-color 0.5s ease;
+}
+
+.container,
+.form-group label,
+h1,
+.ispricnica {
+    transition: color 0.5s ease;
+}
+
+.container,
+.ispricnica {
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.bg-toggle {
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+/* Confetti container */
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+/* Updated confetti animation */
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-10px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Individual confetti pieces */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #f0f0f0;
+    animation: confettiFall 4s linear infinite;
+}
+
+/* Random starting positions */
+.confetti:nth-child(odd) {
+    left: calc(random() * 100vw);
+    animation-duration: 3.5s;
+}
+
+.confetti:nth-child(even) {
+    left: calc(random() * 100vw);
+    animation-duration: 4.5s;
+}
+
+/* Confetti colors */
+.confetti:nth-child(2n) { background-color: #ff69b4; }
+.confetti:nth-child(3n) { background-color: #7fff00; }
+.confetti:nth-child(4n) { background-color: #00bfff; }
+.confetti:nth-child(5n) { background-color: #ffd700; }
+.confetti:nth-child(6n) {
+    left: calc(random() * 100vw);
+    animation-duration: 5s;
 }
