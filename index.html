@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rezerviraj bolest</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Rezerviraj bolest</h1>
+        
+        <div class="form-container">
+            <div class="form-group">
+                <label for="ime">Ime:</label>
+                <input type="text" id="ime" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="prezime">Prezime:</label>
+                <input type="text" id="prezime" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="razlog">Razlog izostanka:</label>
+                <textarea id="razlog" rows="4" required></textarea>
+            </div>
+            
+            <button onclick="generirajIspricnicu()">Generiraj ispričnicu</button>
+        </div>
+
+        <div id="ispricnica" class="ispricnica">
+            <h2>LIJEČNIČKA ISPRIČNICA</h2>
+            <p>Datum: <span id="datum"></span></p>
+            <p>Ovime se potvrđuje da je <span id="ime-ispis"></span> <span id="prezime-ispis"></span> 
+            bio/la spriječen/a prisustvovati nastavi zbog zdravstvenih razloga:</p>
+            <p id="razlog-ispis"></p>
+            <br><br>
+            <p>Potpis liječnika:</p>
+            <p>_________________</p>
+        </div>
+    </div>
+
+    <script>
+        function generirajIspricnicu() {
+            const ime = document.getElementById('ime').value;
+            const prezime = document.getElementById('prezime').value;
+            const razlog = document.getElementById('razlog').value;
+            
+            if (!ime || !prezime || !razlog) {
+                alert('Molimo popunite sva polja!');
+                return;
+            }
+
+            document.getElementById('ime-ispis').textContent = ime;
+            document.getElementById('prezime-ispis').textContent = prezime;
+            document.getElementById('razlog-ispis').textContent = razlog;
+            document.getElementById('datum').textContent = new Date().toLocaleDateString();
+            document.getElementById('ispricnica').style.display = 'block';
+            
+            window.print();
+        }
+    </script>
+</body>
+</html>
